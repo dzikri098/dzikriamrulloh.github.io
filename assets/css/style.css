@@ -77,6 +77,10 @@ img{
     display: block;
 }
 
+.d-none{
+    display: none !important;
+}
+
 .section-title{
     position: relative;
     font-size: var(--h2-font-size);
@@ -340,6 +344,44 @@ img{
     transform: scale(1.1);
 }
 
+.alert {
+    padding: 15px;
+    background-color: var(--first-color);
+    /* background-color: #f44336; */
+    color: white;
+    margin-bottom: var(--mb-4);
+    border-radius: var(--mb-1);
+    font-size: var(--mb-2);
+  }
+  
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  }
+
+.none{
+    display: none;
+}
+
+.buttonload {
+    background-color:var(--second-color); 
+  }
+
+  .fa {
+    margin-left: -12px;
+    margin-right: 8px;
+  }
+
 .btn__work {
     padding-top: 5rem;
     width: 15%;
@@ -366,6 +408,21 @@ img{
     margin-left: auto;
 }
 
+.contactloading__button{
+    display: block;
+    border: none;
+    outline: none;
+    font-size: var(--normal-font-size);
+    margin-left: auto;
+}
+
+.loading{
+    background-color: var(--second-color);
+    color: #fff;
+    padding: .75rem 2.5rem;
+    font-weight: var(--font-semi);
+    border-radius: .5rem;
+}
 
 .footer{
     background-color: var(--second-color);

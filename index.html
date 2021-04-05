@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/img/icon.svg" type="image/x-icon">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <title>Dzikri Amrulloh || Personal Portfolio</title>
 </head>
@@ -235,12 +236,22 @@
             <h2 class="section-title">Contact</h2>
 
             <div class="contact__container bd-grid">
-                <form action="" class="contact__form">
-                    <input type="text" placeholder="Name" class="contact__input">
-                    <input type="mail" placeholder="Email" class="contact__input">
-                    <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
+                <div class="alert my-alert d-none">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                    <strong>Terimakasih!</strong> Pesan anda telah kami terima
+                </div>
 
-                    <input type="button" value="Send" class="contact__button button">
+                <form action="" class="contact__form" name="submit-to-google-sheet">
+                    <input type="text" placeholder="Name" class="contact__input" name="nama">
+                    <input type="mail" placeholder="Email" class="contact__input" name="email">
+                    <textarea name="pesan" id="" cols="0" rows="10" class="contact__input"></textarea>
+
+                    <button type="submit" value="Send" class="contact__button button btn-send">
+                        Send
+                    </button>
+                    <button class="buttonload contactloading__button loading btn-loading d-none">
+                        <i class="fa fa-circle-o-notch fa-spin"></i>Loading
+                    </button>
                 </form>
             </div>
         </section>
@@ -263,5 +274,31 @@
 
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx2p4U1IQ1HNIuMqQ0OZkLT68fNR-TVpCfiZXB5JCJBllqHHXhpVMpZhoo5B2pCRpIh/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const btnSend = document.querySelector('.btn-send');
+        const btnLoading = document.querySelector('.btn-loading');
+        const myAlert = document.querySelector('.my-alert');
+
+
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+
+          btnLoading.classList.toggle('d-none');
+          btnSend.classList.toggle('d-none');
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                btnLoading.classList.toggle('d-none');
+                btnSend.classList.toggle('d-none');
+
+                myAlert.classList.toggle('d-none');
+                //resetform
+                form.reset();
+                console.log('Success!', response);
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
 </body>
 </html>
